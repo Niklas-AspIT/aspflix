@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebaseConfig";
 import Layout from "../components/Layout";
-import Style from "../styles/Login.module.scss";
+import Style from "../styles/SignIn.module.scss";
 import { Formik, FormikValues, Form, ErrorMessage, Field } from "formik";
 import { useRouter } from "next/router";
 import { useEffect } from "react";

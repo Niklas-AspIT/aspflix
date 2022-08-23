@@ -9,7 +9,7 @@ const Browse = () => {
 
   useEffect(() => {
     if (!auth.user && !auth.loading) {
-      router.push("/login");
+      router.push("/signin");
     }
   }, [auth.user, auth.loading, router]);
 

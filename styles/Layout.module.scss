@@ -13,6 +13,7 @@
     align-items: center;
 
     .header__logo {
+      display: none;
       cursor: pointer;
     }
 
@@ -48,6 +49,15 @@
     padding: 1rem;
 
     display: grid;
+  }
+}
+@media screen and (min-width: 278px) {
+  .wrapper {
+    .wrapper__header {
+      .header__logo {
+        display: initial;
+      }
+    }
   }
 }
 

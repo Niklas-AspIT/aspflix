@@ -1,4 +1,3 @@
-import { onAuthStateChanged } from "firebase/auth";
 import { Html, Head, Main, NextScript } from "next/document";
 const Document = () => {
   return (
