@@ -1,0 +1,21 @@
+@import "variables";
+
+.loader {
+  align-self: center;
+  justify-self: center;
+
+  width: 200px;
+  height: 200px;
+
+  border-radius: 50%;
+  border: 2rem solid $green;
+  border-top: 2rem solid transparent;
+
+  animation: loop 500ms linear infinite;
+}
+
+@keyframes loop {
+  to {
+    transform: rotate(360deg);
+  }
+}

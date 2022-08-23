@@ -1,5 +1,17 @@
 .wrapper {
+  .wrapper__hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("../assets/images/film_tiles.jpg") no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
   .wrapper__main {
+    z-index: 1;
     flex-grow: 1;
+    padding: 1rem;
+
+    display: grid;
   }
 }
