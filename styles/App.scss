@@ -1,4 +1,7 @@
-.wrapper {
+body > #__next > div:first-of-type {
   min-height: 100vh;
   font-family: "Montserrat", sans-serif;
+
+  display: flex;
+  flex-direction: column;
 }
