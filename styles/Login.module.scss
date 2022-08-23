@@ -1,7 +1,7 @@
 @import "variables";
 
 .form {
-  background: transparentize($dark, 0.15);
+  background: transparentize($dark, 0.1);
   padding: 2rem;
 
   align-self: center;
@@ -35,12 +35,16 @@
     outline: none;
     border-radius: 0.25rem;
     margin-top: 2rem;
+
+    &:focus {
+      border-bottom: 2px solid $orange;
+    }
   }
 
   .form__submit {
     font-weight: 600;
     margin-top: 4rem;
-    background: $dark-green;
+    background: $orange;
     color: $text-light;
     border: none;
     cursor: pointer;
@@ -53,7 +57,7 @@
 @media screen and (min-width: 728px) {
   .form {
     .form__submit:hover {
-      background: $green;
+      background: darken($orange, 5);
     }
   }
 }

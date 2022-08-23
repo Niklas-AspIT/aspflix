@@ -15,7 +15,7 @@ const tryLogin = async (event: { email: string; password: string }) => {
   await signInWithEmailAndPassword(auth, event.email, event.password);
 };
 
-const Login: NextPage = () => {
+const SignIn: NextPage = () => {
   const router = useRouter();
   const auth = useAuth();
 
@@ -30,7 +30,7 @@ const Login: NextPage = () => {
   }
 
   return (
-    <Layout hero={true}>
+    <Layout hero={true} hideSignIn={true}>
       {/* Formik forms, read here: https://formik.org/docs/overview */}
       <Formik
         initialValues={{ email: "", password: "", error: "" }}
@@ -74,7 +74,7 @@ const Login: NextPage = () => {
       >
         {({ isSubmitting }) => (
           <Form className={Style.form}>
-            <h3 className={Style.form__title}>Login</h3>
+            <h3 className={Style.form__title}>Sign in</h3>
             <ErrorMessage
               component="div"
               name="error"
@@ -107,7 +107,7 @@ const Login: NextPage = () => {
               disabled={isSubmitting}
               className={Style.form__submit}
             >
-              Login
+              Sign in
             </button>
           </Form>
         )}
@@ -116,4 +116,4 @@ const Login: NextPage = () => {
   );
 };
 
-export default Login;
+export default SignIn;
