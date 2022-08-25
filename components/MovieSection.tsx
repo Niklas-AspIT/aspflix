@@ -17,6 +17,11 @@ const MovieSection = ({ title, movies }: MovieSectionProps) => {
               key={movie.id}
               poster={movie.poster_path}
               title={movie.title}
+              overview={movie.overview}
+              vote_average={movie.vote_average}
+              release_date={movie.release_date}
+              backdrop={movie.backdrop_path}
+              adult={movie.adult}
             />
           );
         })}

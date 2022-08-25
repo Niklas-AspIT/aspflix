@@ -11,3 +11,63 @@ $light: #fff;
 
 $text-light: $light;
 $text-dark: $dark;
+
+@mixin movie_modal {
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal__content {
+    border-radius: 0.25rem;
+    max-width: 728px;
+    width: 100%;
+    min-height: 25vh;
+    z-index: 3;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+
+    .content__title {
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+    }
+
+    .content__date {
+      font-size: 1.25rem;
+      color: rgb(200, 200, 200);
+    }
+
+    .content__adult {
+      display: flex;
+      align-items: center;
+      column-gap: 0.25rem;
+      color: $danger;
+      font-weight: bold;
+    }
+
+    .content__rating {
+      margin-top: 0;
+      font-size: 1.25rem;
+      span {
+        color: $orange;
+        font-weight: bold;
+      }
+    }
+
+    .content__overview {
+      margin: 0;
+      font-size: clamp(1rem, 5vw, 1.25rem);
+    }
+  }
+}

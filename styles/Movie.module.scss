@@ -7,3 +7,7 @@
     transform: scale(1.05);
   }
 }
+
+.modal {
+  @include movie_modal;
+}
