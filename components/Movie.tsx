@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { BsPlayCircleFill } from "react-icons/bs";
 import { CgDanger } from "react-icons/cg";
 import Style from "../styles/Movie.module.scss";
 
@@ -25,6 +27,7 @@ const Movie = ({
   adult,
 }: MovieProps) => {
   const [displayModal, displayModalSet] = useState(false);
+  const [showTrailer, showTrailerSet] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const movieRef = useRef<HTMLDivElement | null>(null);
 
@@ -46,6 +49,7 @@ const Movie = ({
         !movieRef.current.contains(event.target)
       ) {
         displayModalSet(false);
+        showTrailerSet(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -83,6 +87,19 @@ const Movie = ({
             <strong className={Style.content__title}>{title}</strong>
             <small className={Style.content__date}>{release_date}</small>
 
+            {showTrailer && (
+              <iframe
+                style={{ marginTop: "0.5rem" }}
+                width="100%"
+                height="315"
+                src="https://www.youtube.com/embed/NZrX_ES93JA"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            )}
+
             <p className={Style.content__adult}>
               {adult && (
                 <>
@@ -90,6 +107,22 @@ const Movie = ({
                 </>
               )}
             </p>
+
+            <div
+              className={Style.content__trailer}
+              onClick={() => showTrailerSet((s) => !s)}
+            >
+              {showTrailer ? (
+                <>
+                  <AiFillCloseCircle /> Close trailer
+                </>
+              ) : (
+                <>
+                  <BsPlayCircleFill /> Play trailer
+                </>
+              )}
+            </div>
+
             <p className={Style.content__rating}>
               Rating: <span>{vote_average}</span>
             </p>

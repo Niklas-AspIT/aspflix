@@ -56,8 +56,20 @@ $text-dark: $dark;
       font-weight: bold;
     }
 
+    .content__trailer {
+      display: flex;
+      align-items: center;
+      column-gap: 0.4rem;
+      font-size: 1.5rem;
+
+      svg {
+        color: $orange;
+      }
+
+      cursor: pointer;
+    }
+
     .content__rating {
-      margin-top: 0;
       font-size: 1.25rem;
       span {
         color: $orange;

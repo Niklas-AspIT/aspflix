@@ -8,6 +8,8 @@ import MovieSection from "../components/MovieSection";
 import useAuth from "../lib/useAuth";
 import Style from "../styles/Browse.module.scss";
 import { CgDanger } from "react-icons/cg";
+import { BsPlayCircleFill } from "react-icons/bs";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 const IMAGE_URL = "https://image.tmdb.org/t/p/original";
 
@@ -18,6 +20,7 @@ interface BrowseProps {
 
 const Browse: NextPage<BrowseProps> = ({ popularMovies, topMovies }) => {
   const [showFeatured, showFeaturedSet] = useState(false);
+  const [showTrailer, showTrailerSet] = useState(false);
   const [featuredMovie] = useState(
     popularMovies.results[
       Math.floor(Math.random() * popularMovies.results.length)
@@ -47,6 +50,7 @@ const Browse: NextPage<BrowseProps> = ({ popularMovies, topMovies }) => {
         !movieRef.current.contains(event.target)
       ) {
         showFeaturedSet(false);
+        showTrailerSet(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -87,6 +91,19 @@ const Browse: NextPage<BrowseProps> = ({ popularMovies, topMovies }) => {
                 {featuredMovie.release_date}
               </small>
 
+              {showTrailer && (
+                <iframe
+                  style={{ marginTop: "0.5rem" }}
+                  width="100%"
+                  height="315"
+                  src="https://www.youtube.com/embed/NZrX_ES93JA"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              )}
+
               <p className={Style.content__adult}>
                 {featuredMovie.adult && (
                   <>
@@ -94,6 +111,22 @@ const Browse: NextPage<BrowseProps> = ({ popularMovies, topMovies }) => {
                   </>
                 )}
               </p>
+
+              <div
+                className={Style.content__trailer}
+                onClick={() => showTrailerSet((s) => !s)}
+              >
+                {showTrailer ? (
+                  <>
+                    <AiFillCloseCircle /> Close trailer
+                  </>
+                ) : (
+                  <>
+                    <BsPlayCircleFill /> Play trailer
+                  </>
+                )}
+              </div>
+
               <p className={Style.content__rating}>
                 Rating: <span>{featuredMovie.vote_average}</span>
               </p>
