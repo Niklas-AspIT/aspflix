@@ -1,22 +1,21 @@
 import type { NextPage } from "next";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebaseConfig";
 import Layout from "../components/Layout";
-import Style from "../styles/SignIn.module.scss";
+import Style from "../styles/Register.module.scss";
 import { Formik, FormikValues, Form, ErrorMessage, Field } from "formik";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Loader from "../components/Loader";
 import useAuth from "../lib/useAuth";
-import Link from "next/link";
 
 const auth = getAuth(app);
 
-const tryLogin = async (event: { email: string; password: string }) => {
-  await signInWithEmailAndPassword(auth, event.email, event.password);
+const tryRegister = async (event: { email: string; password: string }) => {
+  await createUserWithEmailAndPassword(auth, event.email, event.password);
 };
 
-const SignIn: NextPage = () => {
+const Register: NextPage<{ email: string }> = ({ email }) => {
   const router = useRouter();
   const auth = useAuth();
 
@@ -34,7 +33,12 @@ const SignIn: NextPage = () => {
     <Layout hero={true} hideSignIn={true}>
       {/* Formik forms, read here: https://formik.org/docs/overview */}
       <Formik
-        initialValues={{ email: "", password: "", error: "" }}
+        initialValues={{
+          email: email,
+          password: "",
+          passwordConfirm: "",
+          error: "",
+        }}
         validate={(values) => {
           const errors: FormikValues = {};
 
@@ -50,10 +54,14 @@ const SignIn: NextPage = () => {
             errors.password = "Password has to be between 6-40 characters.";
           }
 
+          if (values.passwordConfirm !== values.password) {
+            errors.passwordConfirm = "Passwords do not match";
+          }
+
           return errors;
         }}
         onSubmit={(values, { setSubmitting, setErrors }) => {
-          tryLogin(values)
+          tryRegister(values)
             .then(() => setSubmitting(false))
             .catch((e) => {
               const error = e.toString();
@@ -79,7 +87,7 @@ const SignIn: NextPage = () => {
       >
         {({ isSubmitting }) => (
           <Form className={Style.form}>
-            <h3 className={Style.form__title}>Sign in</h3>
+            <h3 className={Style.form__title}>Register</h3>
             <ErrorMessage
               component="div"
               name="error"
@@ -107,22 +115,24 @@ const SignIn: NextPage = () => {
               component="div"
               className={Style.form__error}
             />
+            <Field
+              type="password"
+              name="passwordConfirm"
+              className={Style.form__field}
+              placeholder="Password confirm"
+            />
+            <ErrorMessage
+              name="passwordConfirm"
+              component="div"
+              className={Style.form__error}
+            />
             <button
               type="submit"
               disabled={isSubmitting}
               className={Style.form__submit}
             >
-              Sign in
+              Register
             </button>
-
-            <div className={Style.form__register}>
-              <p className={Style.register__text}>
-                Don&apos;t have an account?
-              </p>
-              <Link href="/register">
-                <a className={Style.register__link}>Sign up here</a>
-              </Link>
-            </div>
           </Form>
         )}
       </Formik>
@@ -130,4 +140,12 @@ const SignIn: NextPage = () => {
   );
 };
 
-export default SignIn;
+export async function getServerSideProps(context: { [key: string]: any }) {
+  return {
+    props: {
+      email: context.query.email,
+    },
+  };
+}
+
+export default Register;

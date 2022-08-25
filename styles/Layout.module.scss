@@ -1,6 +1,14 @@
 @import "variables";
 
 .wrapper {
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  color: $text-light;
+  background: $dark;
+
+  display: flex;
+  flex-direction: column;
+
   .wrapper__header {
     background: transparentize($dark, 0.6);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -9,7 +17,7 @@
     padding: 0.5rem 1.5rem;
 
     display: grid;
-    grid-template-columns: max(10vw, 125px) 3fr auto;
+    grid-template-columns: 1fr;
     align-items: center;
 
     .header__logo {
@@ -17,8 +25,8 @@
       cursor: pointer;
     }
 
-    .header__signin {
-      grid-column: 3;
+    .header__button {
+      cursor: pointer;
       white-space: nowrap;
       background: $orange;
       color: $text-light;
@@ -36,7 +44,7 @@
     }
   }
   .wrapper__hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
       url("../assets/images/film_tiles.jpg") no-repeat;
     background-size: cover;
     height: 100%;
@@ -46,16 +54,21 @@
   .wrapper__main {
     z-index: 1;
     flex-grow: 1;
-    padding: 1rem;
 
     display: grid;
   }
 }
+
 @media screen and (min-width: 278px) {
   .wrapper {
     .wrapper__header {
+      grid-template-columns: max(10vw, 125px) 3fr auto;
       .header__logo {
         display: initial;
+      }
+
+      .header__button {
+        grid-column: 3;
       }
     }
   }
@@ -66,7 +79,7 @@
     .wrapper__header {
       padding: 1rem 3rem;
 
-      .header__signin {
+      .header__button {
         padding: 0.75rem 2rem;
       }
     }

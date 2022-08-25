@@ -1,13 +1,15 @@
+import { stringLength } from "@firebase/util";
 import type { NextPage } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import Loader from "../components/Loader";
 import useAuth from "../lib/useAuth";
-import Link from "next/link";
 import Style from "../styles/Home.module.scss";
 
 const Home: NextPage = () => {
+  const [email, emailSet] = useState<string>("");
   const router = useRouter();
   const auth = useAuth();
 
@@ -27,9 +29,34 @@ const Home: NextPage = () => {
         <h3 className={Style.landing__title}>
           Watch unlimited movies, series & much more.
         </h3>
-        <Link href="/signin">
-          <a className={Style.landing__signin}>Sign in</a>
-        </Link>
+        <p className={Style.landing__text}>
+          Stream it anywhere in high definition.
+        </p>
+        <form
+          className={Style.landing__register}
+          onSubmit={(e) => {
+            e.preventDefault();
+
+            router.push({
+              pathname: "/register",
+              query: {
+                email: email,
+              },
+            });
+          }}
+        >
+          <input
+            type="email"
+            className={Style.register__input}
+            onChange={(e) => emailSet(e.currentTarget.value)}
+            placeholder="E-mail"
+            required
+          />
+
+          <button className={Style.register__submit} type="submit">
+            Sign up
+          </button>
+        </form>
       </div>
     </Layout>
   );

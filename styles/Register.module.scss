@@ -54,20 +54,6 @@
     padding: 1rem 0.5rem;
     border-radius: 0.25rem;
   }
-
-  .form__register {
-    margin-top: 2rem;
-
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.5rem;
-    .register__text {
-      margin: 0;
-    }
-    .register__link {
-      color: $orange;
-    }
-  }
 }
 
 @media screen and (min-width: 728px) {

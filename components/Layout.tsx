@@ -3,15 +3,26 @@ import Style from "../styles/Layout.module.scss";
 import Logo from "../assets/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import { getAuth, signOut } from "firebase/auth";
+import { app } from "../firebaseConfig";
+
+const auth = getAuth(app);
 
 interface LayoutProps {
   title?: string;
   children?: JSX.Element | JSX.Element[];
   hero?: boolean;
   hideSignIn?: boolean;
+  showSignOut?: boolean;
 }
 
-const Layout = ({ title, children, hero, hideSignIn }: LayoutProps) => {
+const Layout = ({
+  title,
+  children,
+  hero,
+  hideSignIn,
+  showSignOut,
+}: LayoutProps) => {
   return (
     <div className={Style.wrapper}>
       <Head>
@@ -32,8 +43,17 @@ const Layout = ({ title, children, hero, hideSignIn }: LayoutProps) => {
 
         {!hideSignIn && (
           <Link href="/signin">
-            <a className={Style.header__signin}>Sign in</a>
+            <a className={Style.header__button}>Sign in</a>
           </Link>
+        )}
+
+        {showSignOut && (
+          <button
+            className={Style.header__button}
+            onClick={() => signOut(auth)}
+          >
+            Sign out
+          </button>
         )}
       </header>
       <main className={Style.wrapper__main}>{children}</main>
