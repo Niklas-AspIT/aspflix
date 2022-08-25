@@ -1,4 +1,64 @@
 @import "variables";
 
 .browse {
+  padding: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 4rem;
+
+  .browse__featured {
+    display: none;
+  }
+
+  & > section:first-of-type {
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (min-width: 728px) {
+  .browse {
+    .browse__featured {
+      cursor: pointer;
+      width: 100%;
+      height: 700px;
+      position: relative;
+
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+      color: $light;
+
+      &:hover:after {
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: "";
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .featured__title {
+        z-index: 3;
+        font-size: 3rem;
+      }
+
+      &:after {
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: "";
+        background: linear-gradient(45deg, black, rgba(255, 255, 255, 0.1));
+      }
+    }
+
+    & > section:first-of-type {
+      margin-top: 0;
+    }
+  }
 }

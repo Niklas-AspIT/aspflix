@@ -1,0 +1,16 @@
+@import "variables";
+
+.section {
+  .section__title {
+    font-size: 1.5rem;
+  }
+
+  .section__movies {
+    padding: 1rem;
+    margin-top: 1rem;
+
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 1rem;
+  }
+}

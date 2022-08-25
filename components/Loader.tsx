@@ -3,7 +3,7 @@ import Layout from "./Layout";
 
 const Loader = () => {
   return (
-    <Layout hero={true}>
+    <Layout hero={false}>
       <div className={Style.loader}></div>
     </Layout>
   );
