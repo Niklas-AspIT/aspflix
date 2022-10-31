@@ -65,15 +65,13 @@ const Register: NextPage<{ email: string }> = ({ email }) => {
             .then(() => setSubmitting(false))
             .catch((e) => {
               const error = e.toString();
+              const errorReason = error.split("/")[1].substring(0);
+              console.log(errorReason);
 
-              // Check for errors when signing in
-              if (error.includes("user-not-found")) {
+              // Check for errors when signing up
+              if (error.includes("email-already-in-use")) {
                 setErrors({
-                  error: "Couldn't find the account",
-                });
-              } else if (error.includes("wrong-password")) {
-                setErrors({
-                  error: "Wrong email or passowrd",
+                  error: "Account already exists",
                 });
               } else {
                 setErrors({
@@ -143,7 +141,7 @@ const Register: NextPage<{ email: string }> = ({ email }) => {
 export async function getServerSideProps(context: { [key: string]: any }) {
   return {
     props: {
-      email: context.query.email,
+      email: context.query.email || null,
     },
   };
 }

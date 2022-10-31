@@ -32,12 +32,15 @@ const Layout = ({
       <header className={Style.wrapper__header}>
         <div className={Style.header__logo}>
           <Link href="/">
-            <Image
-              src={Logo}
-              alt="aspflix logo"
-              className={Style.logo__image}
-              layout="responsive"
-            />
+            <a>
+              <Image
+                src={Logo}
+                alt="aspflix logo"
+                className={Style.logo__image}
+                layout="responsive"
+                priority={true}
+              />
+            </a>
           </Link>
         </div>
 

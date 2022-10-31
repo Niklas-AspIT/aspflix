@@ -1,6 +1,4 @@
-import { stringLength } from "@firebase/util";
 import type { NextPage } from "next";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
