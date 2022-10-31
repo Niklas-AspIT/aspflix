@@ -58,6 +58,7 @@
         height: 100%;
         content: "";
         background: linear-gradient(45deg, black, rgba(255, 255, 255, 0.1));
+        transition: opacity 250ms ease;
       }
     }
 

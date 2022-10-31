@@ -147,6 +147,7 @@ const Browse: NextPage<BrowseProps> = ({ popularMovies, topMovies }) => {
             alt="Movie poster"
             objectFit="cover"
             style={{ zIndex: "-1" }}
+            priority={true}
           />
           <h2 className={Style.featured__title}>{featuredMovie.title}</h2>
         </div>
